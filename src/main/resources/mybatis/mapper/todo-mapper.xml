@@ -3,8 +3,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.example.mybatis.mapper.TodoMapper">
-    <insert id="save">
+
+    <insert id="save" parameterType="addTodoRequest">
         INSERT INTO TODO (CONTENT, ISCOMPLETED)
-        VALUES(#{todo.content},#{todo.isCompleted});
+        VALUES (#{content}, #{isCompleted});
     </insert>
+
+    <select id="findAll" resultType="GetTodoResponse">
+        SELECT *
+        FROM TODO;
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="GetTodoResponse">
+        SELECT *
+        FROM todo
+        WHERE id = #{id};
+    </select>
+
+    <update id="updateMember">
+        update todo set content = #{content};
+        where id = #{id};
+    </update>
+
+    <delete id="deleteMember">
+        delete from todo
+        where id = #{id}
+    </delete>
 </mapper>
