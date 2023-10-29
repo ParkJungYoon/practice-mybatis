@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class TodoController {
-    private final TodoService todoServiceImpl;
+    private final TodoService todoService;
 
     @PostMapping("/todo")
     public void addTodo(
             @RequestBody AddTodoRequest todo
     ) {
-        todoServiceImpl.addTodo(todo);
+        todoService.addTodo(todo);
     }
 }
